@@ -35,19 +35,13 @@ export function createFlockMemberPreset(config: FlockMemberPresetConfig = {}): A
     vehicle.neighborhoodRadius = neighborRadius;
 
     const separationBehavior = new YUKA.SeparationBehavior();
-    if (separationWeight !== undefined) {
-        separationBehavior.weight = separationWeight;
-    }
+    separationBehavior.weight = separationWeight;
 
     const alignmentBehavior = new YUKA.AlignmentBehavior();
-    if (alignmentWeight !== undefined) {
-        alignmentBehavior.weight = alignmentWeight;
-    }
+    alignmentBehavior.weight = alignmentWeight;
 
     const cohesionBehavior = new YUKA.CohesionBehavior();
-    if (cohesionWeight !== undefined) {
-        cohesionBehavior.weight = cohesionWeight;
-    }
+    cohesionBehavior.weight = cohesionWeight;
 
     const wanderBehavior = new YUKA.WanderBehavior();
     wanderBehavior.weight = 0.5;
