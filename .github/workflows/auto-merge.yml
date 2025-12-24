@@ -56,8 +56,8 @@ jobs:
           # Check if this is a Dependabot PR
           if [[ "$PR_ACTOR" == "dependabot[bot]" ]]; then
             # Extract major versions from PR title
-            FROM_MAJOR=$(echo "$PR_TITLE" | grep -oiE 'from [0-9]+' | head -1 | grep -oE '[0-9]+')
-            TO_MAJOR=$(echo "$PR_TITLE" | grep -oiE 'to [0-9]+' | head -1 | grep -oE '[0-9]+')
+            FROM_MAJOR=$(echo "$PR_TITLE" | grep -oiE 'from [0-9]+' | head -1 | grep -oE '[0-9]+' || true)
+            TO_MAJOR=$(echo "$PR_TITLE" | grep -oiE 'to [0-9]+' | head -1 | grep -oE '[0-9]+' || true)
             
             echo "Detected versions: from=$FROM_MAJOR to=$TO_MAJOR"
             
@@ -66,6 +66,8 @@ jobs:
             elif [[ -n "$FROM_MAJOR" && -n "$TO_MAJOR" ]]; then
               ELIGIBLE="true"
               REASON="Dependabot minor/patch update (v$FROM_MAJOR.x)"
+            elif echo "$PR_TITLE" | grep -q "bump the .* group"; then
+              REASON="Dependabot group update requires manual review"
             else
               REASON="Could not parse version from title - manual review required"
             fi
