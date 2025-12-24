@@ -1,0 +1,167 @@
+{
+  "name": "@jbcom/strata-presets",
+  "version": "1.0.0",
+  "description": "Pre-configured presets for Strata 3D - ready-to-use terrain, weather, physics settings",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./ai": {
+      "types": "./dist/ai/index.d.ts",
+      "import": "./dist/ai/index.js"
+    },
+    "./animation": {
+      "types": "./dist/animation/index.d.ts",
+      "import": "./dist/animation/index.js"
+    },
+    "./audio": {
+      "types": "./dist/audio/index.d.ts",
+      "import": "./dist/audio/index.js"
+    },
+    "./billboards": {
+      "types": "./dist/billboards/index.d.ts",
+      "import": "./dist/billboards/index.js"
+    },
+    "./camera": {
+      "types": "./dist/camera/index.d.ts",
+      "import": "./dist/camera/index.js"
+    },
+    "./characters": {
+      "types": "./dist/characters/index.d.ts",
+      "import": "./dist/characters/index.js"
+    },
+    "./clouds": {
+      "types": "./dist/clouds/index.d.ts",
+      "import": "./dist/clouds/index.js"
+    },
+    "./decals": {
+      "types": "./dist/decals/index.d.ts",
+      "import": "./dist/decals/index.js"
+    },
+    "./fur": {
+      "types": "./dist/fur/index.d.ts",
+      "import": "./dist/fur/index.js"
+    },
+    "./input": {
+      "types": "./dist/input/index.d.ts",
+      "import": "./dist/input/index.js"
+    },
+    "./lighting": {
+      "types": "./dist/lighting/index.d.ts",
+      "import": "./dist/lighting/index.js"
+    },
+    "./lod": {
+      "types": "./dist/lod/index.d.ts",
+      "import": "./dist/lod/index.js"
+    },
+    "./molecular": {
+      "types": "./dist/molecular/index.d.ts",
+      "import": "./dist/molecular/index.js"
+    },
+    "./particles": {
+      "types": "./dist/particles/index.d.ts",
+      "import": "./dist/particles/index.js"
+    },
+    "./physics": {
+      "types": "./dist/physics/index.d.ts",
+      "import": "./dist/physics/index.js"
+    },
+    "./postprocessing": {
+      "types": "./dist/postprocessing/index.d.ts",
+      "import": "./dist/postprocessing/index.js"
+    },
+    "./reflections": {
+      "types": "./dist/reflections/index.d.ts",
+      "import": "./dist/reflections/index.js"
+    },
+    "./shaders": {
+      "types": "./dist/shaders/index.d.ts",
+      "import": "./dist/shaders/index.js"
+    },
+    "./shadows": {
+      "types": "./dist/shadows/index.d.ts",
+      "import": "./dist/shadows/index.js"
+    },
+    "./state": {
+      "types": "./dist/state/index.d.ts",
+      "import": "./dist/state/index.js"
+    },
+    "./terrain": {
+      "types": "./dist/terrain/index.d.ts",
+      "import": "./dist/terrain/index.js"
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "import": "./dist/ui/index.js"
+    },
+    "./vegetation": {
+      "types": "./dist/vegetation/index.d.ts",
+      "import": "./dist/vegetation/index.js"
+    },
+    "./water": {
+      "types": "./dist/water/index.d.ts",
+      "import": "./dist/water/index.js"
+    },
+    "./weather": {
+      "types": "./dist/weather/index.d.ts",
+      "import": "./dist/weather/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome lint src/",
+    "lint:fix": "biome lint --write src/",
+    "format": "biome format --write src/",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "strata",
+    "presets",
+    "configuration",
+    "terrain",
+    "weather",
+    "physics",
+    "animation",
+    "react-three-fiber",
+    "r3f",
+    "threejs"
+  ],
+  "author": "Jon Bogaty <jon@jbcom.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbcom/nodejs-strata-presets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jbcom/nodejs-strata-presets/issues"
+  },
+  "homepage": "https://github.com/jbcom/nodejs-strata-presets#readme",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@jbcom/strata": "^1.0.0",
+    "@react-three/fiber": "^8.17.0",
+    "@types/react": "^18.3.0",
+    "@types/three": "^0.170.0",
+    "react": "^18.3.0",
+    "three": "^0.170.0",
+    "typescript": "^5.7.2",
+    "yuka": "^0.7.8"
+  },
+  "peerDependencies": {
+    "@jbcom/strata": ">=1.0.0",
+    "@react-three/fiber": ">=8.0.0",
+    "react": ">=18.0.0",
+    "three": ">=0.150.0",
+    "yuka": ">=0.7.0"
+  }
+}
