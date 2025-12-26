@@ -3,11 +3,17 @@
 [![npm version](https://img.shields.io/npm/v/@strata/presets.svg)](https://www.npmjs.com/package/@strata/presets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+Pre-configured presets for [Strata 3D](https://strata.game) - ready-to-use terrain, weather, physics, and more.
+
+## 📚 Documentation
+
+**Full documentation is available at [strata.game/presets](https://strata.game/presets/)**
+
+---
+
 ## 🏢 Enterprise Context
 
 **Strata** is the Games & Procedural division of the [jbcom enterprise](https://jbcom.github.io). This package is part of a coherent suite of specialized tools, sharing a unified design system and interconnected with sibling organizations like [Agentic](https://agentic.dev) and [Extended Data](https://extendeddata.dev).
-
-Pre-configured presets for [Strata 3D](https://strata.game) - ready-to-use terrain, weather, physics, and more.
 
 ## Features
 
@@ -18,9 +24,9 @@ Pre-configured presets for [Strata 3D](https://strata.game) - ready-to-use terra
 ## Installation
 
 ```bash
-npm install @strata/presets @strata/core
+npm install @strata/presets @jbcom/strata
 # or
-pnpm add @strata/presets @strata/core
+pnpm add @strata/presets @jbcom/strata
 ```
 
 ## Usage
@@ -41,47 +47,23 @@ const weather = createWeatherPreset(WeatherPresets.RAIN);
 
 ## Available Presets
 
-### Terrain (`@strata/presets/terrain`)
-- `createTerrainPreset` - Generate procedural terrain
-- `TerrainBiomes` - Grassland, desert, mountain, tundra, etc.
-
-### Weather (`@strata/presets/weather`)
-- `createWeatherPreset` - Rain, snow, fog, storm
-- Weather transition utilities
-
-### Physics (`@strata/presets/physics`)
-- `createPhysicsPreset` - Collision, buoyancy, wind
-- Vehicle and character physics
-
-### Animation (`@strata/presets/animation`)
-- `createAnimationPreset` - Walk cycles, IK solvers
-- Gait configurations
-
-### Vegetation (`@strata/presets/vegetation`)
-- `createVegetationPreset` - Grass, trees, bushes
-- LOD and instancing settings
-
-### Clouds (`@strata/presets/clouds`)
-- `createCloudPreset` - Cumulus, stratus, cumulonimbus
-- Volumetric cloud settings
-
-### Water (`@strata/presets/water`)
-- `createWaterPreset` - Ocean, lake, river
-- Reflection and refraction settings
-
-### Audio (`@strata/presets/audio`)
-- `createAudioPreset` - Ambient, spatial audio
-- Environment presets
-
-### Camera (`@strata/presets/camera`)
-- `createCameraPreset` - First-person, third-person, cinematic
-- Transition configurations
+| Category | Functions |
+|----------|-----------|
+| Terrain | `createTerrainPreset`, `TerrainBiomes` |
+| Weather | `createWeatherPreset`, `WeatherPresets` |
+| Water | `createWaterPreset`, `WaterTypes` |
+| Vegetation | `createVegetationPreset` |
+| Clouds | `createCloudPreset` |
+| Camera | `createCameraPreset` |
+| Animation | `createAnimationPreset` |
+| Physics | `createPhysicsPreset` |
+| Audio | `createAudioPreset` |
 
 ## Related
 
-- [Strata 3D](https://strata.game) - Full procedural graphics library
-- [Strata Shaders](https://github.com/strata-game-library/shaders) - GLSL shader collection
-- [Strata Examples](https://github.com/strata-game-library/examples) - Example applications
+- [Strata Documentation](https://strata.game) - Full documentation
+- [Strata Core](https://github.com/strata-game-library/core) - Main library
+- [Strata Shaders](https://github.com/strata-game-library/shaders) - GLSL shaders
 
 ## License
 
