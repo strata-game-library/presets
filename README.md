@@ -1,6 +1,13 @@
 # @strata/presets
 
-Pre-configured presets for [Strata 3D](https://github.com/jbcom/nodejs-strata) - ready-to-use terrain, weather, physics, and more.
+[![npm version](https://img.shields.io/npm/v/@strata/presets.svg)](https://www.npmjs.com/package/@strata/presets)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## 🏢 Enterprise Context
+
+**Strata** is the Games & Procedural division of the [jbcom enterprise](https://jbcom.github.io). This package is part of a coherent suite of specialized tools, sharing a unified design system and interconnected with sibling organizations like [Agentic](https://agentic.dev) and [Extended Data](https://extendeddata.dev).
+
+Pre-configured presets for [Strata 3D](https://strata.game) - ready-to-use terrain, weather, physics, and more.
 
 ## Features
 
@@ -72,9 +79,9 @@ const weather = createWeatherPreset(WeatherPresets.RAIN);
 
 ## Related
 
-- [Strata 3D](https://github.com/jbcom/nodejs-strata) - Full procedural graphics library
-- [Strata Shaders](https://github.com/jbcom/nodejs-strata-shaders) - GLSL shader collection
-- [Strata Examples](https://github.com/jbcom/nodejs-strata-examples) - Example applications
+- [Strata 3D](https://strata.game) - Full procedural graphics library
+- [Strata Shaders](https://github.com/strata-game-library/shaders) - GLSL shader collection
+- [Strata Examples](https://github.com/strata-game-library/examples) - Example applications
 
 ## License
 
