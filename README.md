@@ -1,4 +1,4 @@
-# @jbcom/strata-presets
+# @strata/presets
 
 Pre-configured presets for [Strata 3D](https://github.com/jbcom/nodejs-strata) - ready-to-use terrain, weather, physics, and more.
 
@@ -11,16 +11,16 @@ Pre-configured presets for [Strata 3D](https://github.com/jbcom/nodejs-strata) -
 ## Installation
 
 ```bash
-npm install @jbcom/strata-presets @jbcom/strata
+npm install @strata/presets @strata/core
 # or
-pnpm add @jbcom/strata-presets @jbcom/strata
+pnpm add @strata/presets @strata/core
 ```
 
 ## Usage
 
 ```typescript
-import { createTerrainPreset, TerrainBiomes } from '@jbcom/strata-presets/terrain';
-import { createWeatherPreset, WeatherPresets } from '@jbcom/strata-presets/weather';
+import { createTerrainPreset, TerrainBiomes } from '@strata/presets/terrain';
+import { createWeatherPreset, WeatherPresets } from '@strata/presets/weather';
 
 // Create terrain with predefined biomes
 const terrain = createTerrainPreset({
@@ -34,39 +34,39 @@ const weather = createWeatherPreset(WeatherPresets.RAIN);
 
 ## Available Presets
 
-### Terrain (`@jbcom/strata-presets/terrain`)
+### Terrain (`@strata/presets/terrain`)
 - `createTerrainPreset` - Generate procedural terrain
 - `TerrainBiomes` - Grassland, desert, mountain, tundra, etc.
 
-### Weather (`@jbcom/strata-presets/weather`)
+### Weather (`@strata/presets/weather`)
 - `createWeatherPreset` - Rain, snow, fog, storm
 - Weather transition utilities
 
-### Physics (`@jbcom/strata-presets/physics`)
+### Physics (`@strata/presets/physics`)
 - `createPhysicsPreset` - Collision, buoyancy, wind
 - Vehicle and character physics
 
-### Animation (`@jbcom/strata-presets/animation`)
+### Animation (`@strata/presets/animation`)
 - `createAnimationPreset` - Walk cycles, IK solvers
 - Gait configurations
 
-### Vegetation (`@jbcom/strata-presets/vegetation`)
+### Vegetation (`@strata/presets/vegetation`)
 - `createVegetationPreset` - Grass, trees, bushes
 - LOD and instancing settings
 
-### Clouds (`@jbcom/strata-presets/clouds`)
+### Clouds (`@strata/presets/clouds`)
 - `createCloudPreset` - Cumulus, stratus, cumulonimbus
 - Volumetric cloud settings
 
-### Water (`@jbcom/strata-presets/water`)
+### Water (`@strata/presets/water`)
 - `createWaterPreset` - Ocean, lake, river
 - Reflection and refraction settings
 
-### Audio (`@jbcom/strata-presets/audio`)
+### Audio (`@strata/presets/audio`)
 - `createAudioPreset` - Ambient, spatial audio
 - Environment presets
 
-### Camera (`@jbcom/strata-presets/camera`)
+### Camera (`@strata/presets/camera`)
 - `createCameraPreset` - First-person, third-person, cinematic
 - Transition configurations
 

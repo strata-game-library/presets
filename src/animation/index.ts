@@ -5,7 +5,7 @@
  * @module presets/animation
  */
 
-import type { GaitConfig, LookAtConfig, SpringConfig } from '@jbcom/strata/core/animation';
+import type { GaitConfig, LookAtConfig, SpringConfig } from '@strata/core/core/animation';
 
 export interface IKPreset {
     name: string;

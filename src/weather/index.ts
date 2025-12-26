@@ -5,7 +5,7 @@
  */
 
 import * as THREE from 'three';
-import type { WeatherStateConfig } from '@jbcom/strata/core/weather';
+import type { WeatherStateConfig } from '@strata/core/core/weather';
 
 export interface WeatherPreset extends Omit<WeatherStateConfig, 'windDirection'> {
     name: string;

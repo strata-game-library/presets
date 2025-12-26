@@ -4,7 +4,7 @@
  * Pre-configured state templates for common game types.
  */
 
-import type { AutoSaveConfig } from '@jbcom/strata/core/state';
+import type { AutoSaveConfig } from '@strata/core/core/state';
 
 export interface RPGPlayerStats {
     level: number;

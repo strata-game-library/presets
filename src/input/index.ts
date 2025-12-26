@@ -13,7 +13,7 @@ import type {
     TriggerConfig,
     TriggerMaterialConfig,
     WallButtonProps,
-} from '@jbcom/strata/components/input';
+} from '@strata/core/components/input';
 
 export interface InputPreset<T> {
     name: string;

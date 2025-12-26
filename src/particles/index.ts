@@ -14,7 +14,7 @@ import {
     ParticleEmitter,
     type ParticleEmitterConfig,
     type ParticleForces,
-} from '@jbcom/strata/core/particles';
+} from '@strata/core/core/particles';
 
 export { ParticleEmitter, createParticleEmitter };
 export type {

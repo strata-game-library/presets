@@ -10,7 +10,7 @@ import type {
     CloudSkyConfig,
     DayNightConfig,
     WindConfig,
-} from '@jbcom/strata/core/clouds';
+} from '@strata/core/core/clouds';
 
 export type CloudPresetName = 'clear' | 'partlyCloudy' | 'overcast' | 'stormy' | 'sunset';
 

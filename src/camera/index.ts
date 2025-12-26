@@ -9,7 +9,7 @@ import type {
     CinematicCameraProps,
     FollowCameraProps,
     OrbitCameraProps,
-} from '@jbcom/strata/components/camera';
+} from '@strata/core/components/camera';
 
 /**
  * Third-person camera configuration.

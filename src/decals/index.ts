@@ -13,7 +13,7 @@ import {
     createFootprintTexture,
     createScorchMarkTexture,
     createWaterPuddleTexture,
-} from '@jbcom/strata/core/decals';
+} from '@strata/core/core/decals';
 
 export interface DecalOptions {
     position: THREE.Vector3;
