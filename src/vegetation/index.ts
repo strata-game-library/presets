@@ -9,11 +9,11 @@ import {
     createInstancedMesh,
     generateInstanceData,
     type InstanceData,
-} from '@jbcom/strata/core/instancing';
-import type { BiomeData } from '@jbcom/strata/core/sdf';
+} from '@strata/core/core/instancing';
+import type { BiomeData } from '@strata/core/core/sdf';
 
-export type { InstanceData } from '@jbcom/strata/core/instancing';
-export type { BiomeData } from '@jbcom/strata/core/sdf';
+export type { InstanceData } from '@strata/core/core/instancing';
+export type { BiomeData } from '@strata/core/core/sdf';
 
 export interface VegetationOptions {
     count: number;

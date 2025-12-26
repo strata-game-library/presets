@@ -10,11 +10,11 @@ import {
     generateTerrainChunk,
     marchingCubes,
     type TerrainChunk,
-} from '@jbcom/strata/core/marching-cubes';
-import { getTerrainHeight, type BiomeData as SDFBiomeData, sdTerrain } from '@jbcom/strata/core/sdf';
+} from '@strata/core/core/marching-cubes';
+import { getTerrainHeight, type BiomeData as SDFBiomeData, sdTerrain } from '@strata/core/core/sdf';
 
-export type { MarchingCubesOptions, TerrainChunk } from '@jbcom/strata/core/marching-cubes';
-export type { BiomeData } from '@jbcom/strata/core/sdf';
+export type { MarchingCubesOptions, TerrainChunk } from '@strata/core/core/marching-cubes';
+export type { BiomeData } from '@strata/core/core/sdf';
 
 export interface TerrainOptions {
     biomes: SDFBiomeData[];

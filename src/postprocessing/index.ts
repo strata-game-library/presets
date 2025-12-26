@@ -644,7 +644,7 @@ export type {
     SSAOSettings,
     ToneMappingSettings,
     VignetteSettings,
-} from '@jbcom/strata/core/postProcessing';
+} from '@strata/core/core/postProcessing';
 
 export {
     apertureToBokehScale,
@@ -657,9 +657,9 @@ export {
     fovToFocalLength,
     getTimeOfDayEffects,
     lutConfigs,
-} from '@jbcom/strata/core/postProcessing';
+} from '@strata/core/core/postProcessing';
 
-import type { PostProcessingPreset } from '@jbcom/strata/core/postProcessing';
+import type { PostProcessingPreset } from '@strata/core/core/postProcessing';
 
 /**
  * Cinematic post-processing preset
