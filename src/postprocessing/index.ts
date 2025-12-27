@@ -145,7 +145,7 @@ export function createPostProcessingPipeline(
     const dispose = () => {
         rtA.dispose();
         rtB.dispose();
-        effectMaterials.forEach((m) => m.dispose());
+        effectMaterials.forEach((m) => { m.dispose(); });
         quadGeometry.dispose();
         finalMaterial.dispose();
     };

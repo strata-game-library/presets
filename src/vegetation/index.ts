@@ -42,7 +42,7 @@ export function createVegetationMesh(options: VegetationOptions): THREE.Instance
         material,
         enableWind = true,
         windStrength = 0.5,
-        lodDistance = 100,
+        lodDistance: _lodDistance = 100,
     } = options;
 
     // Input validation
