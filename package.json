@@ -148,11 +148,14 @@
   "homepage": "https://github.com/strata-game-library/presets#readme",
   "devDependencies": {
     "@biomejs/biome": "^2.3.10",
-    "@strata-game-library/core": "^1.4.10",
     "@react-three/fiber": "^9.4.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@strata-game-library/core": "^1.4.10",
     "@types/react": "^19.0.0",
     "@types/three": "^0.182.0",
     "react": "^19.0.0",
+    "semantic-release": "^25.0.2",
     "three": "^0.182.0",
     "typescript": "^5.9.0",
     "yuka": "^0.7.8"
