@@ -154,6 +154,7 @@
     "@strata-game-library/core": "^1.4.10",
     "@types/react": "^19.0.0",
     "@types/three": "^0.182.0",
+    "@types/yuka": "^0.7.4",
     "react": "^19.0.0",
     "semantic-release": "^25.0.2",
     "three": "^0.182.0",
@@ -161,8 +162,8 @@
     "yuka": "^0.7.8"
   },
   "peerDependencies": {
-    "@strata-game-library/core": ">=1.4.0",
     "@react-three/fiber": ">=8.0.0",
+    "@strata-game-library/core": ">=1.4.0",
     "react": ">=18.0.0",
     "three": ">=0.150.0",
     "yuka": ">=0.7.0"

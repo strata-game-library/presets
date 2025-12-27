@@ -13,7 +13,7 @@ import type {
     TriggerConfig,
     TriggerMaterialConfig,
     WallButtonProps,
-} from '@strata-game-library/core/components/input';
+} from '@strata-game-library/core/components';
 
 export interface InputPreset<T> {
     name: string;

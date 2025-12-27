@@ -5,7 +5,7 @@
  * @module presets/animation
  */
 
-import type { GaitConfig, LookAtConfig, SpringConfig } from '@strata-game-library/core/core/animation';
+import type { GaitConfig, LookAtConfig, SpringConfig } from '@strata-game-library/core';
 
 export interface IKPreset {
     name: string;

@@ -145,7 +145,9 @@ export function createPostProcessingPipeline(
     const dispose = () => {
         rtA.dispose();
         rtB.dispose();
-        effectMaterials.forEach((m) => m.dispose());
+        effectMaterials.forEach((m) => {
+            m.dispose();
+        });
         quadGeometry.dispose();
         finalMaterial.dispose();
     };
@@ -644,7 +646,7 @@ export type {
     SSAOSettings,
     ToneMappingSettings,
     VignetteSettings,
-} from '@strata-game-library/core/core/postProcessing';
+} from '@strata-game-library/core';
 
 export {
     apertureToBokehScale,
@@ -657,9 +659,9 @@ export {
     fovToFocalLength,
     getTimeOfDayEffects,
     lutConfigs,
-} from '@strata-game-library/core/core/postProcessing';
+} from '@strata-game-library/core';
 
-import type { PostProcessingPreset } from '@strata-game-library/core/core/postProcessing';
+import type { PostProcessingPreset } from '@strata-game-library/core';
 
 /**
  * Cinematic post-processing preset

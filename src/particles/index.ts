@@ -14,7 +14,7 @@ import {
     ParticleEmitter,
     type ParticleEmitterConfig,
     type ParticleForces,
-} from '@strata-game-library/core/core/particles';
+} from '@strata-game-library/core';
 
 export { ParticleEmitter, createParticleEmitter };
 export type {

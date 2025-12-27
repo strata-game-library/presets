@@ -67,22 +67,22 @@ export function createPreyPreset(config: PreyPresetConfig = {}): AIPresetResult 
     }
 
     const stateMachine = new YUKA.StateMachine(vehicle);
-    const wanderState = new WanderState();
-    const fleeState = new FleeState();
-    stateMachine.currentState = wanderState;
+    stateMachine.add('WANDER', new WanderState());
+    stateMachine.add('FLEE', new FleeState());
+    stateMachine.changeTo('WANDER');
 
     const update = (_delta: number, context?: { threatPosition?: YUKA.Vector3 }) => {
         if (context?.threatPosition) {
             const distance = vehicle.position.distanceTo(context.threatPosition);
 
             if (distance < fleeDistance) {
-                if (stateMachine.currentState !== fleeState) {
-                    stateMachine.changeTo(fleeState);
+                if (!stateMachine.in('FLEE')) {
+                    stateMachine.changeTo('FLEE');
                 }
                 fleeBehavior.target = context.threatPosition;
             } else {
-                if (stateMachine.currentState !== wanderState) {
-                    stateMachine.changeTo(wanderState);
+                if (!stateMachine.in('WANDER')) {
+                    stateMachine.changeTo('WANDER');
                 }
             }
         }

@@ -5,7 +5,7 @@
  */
 
 import * as THREE from 'three';
-import type { WeatherStateConfig } from '@strata-game-library/core/core/weather';
+import type { WeatherStateConfig } from '@strata-game-library/core';
 
 export interface WeatherPreset extends Omit<WeatherStateConfig, 'windDirection'> {
     name: string;

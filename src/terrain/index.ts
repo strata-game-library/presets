@@ -10,11 +10,11 @@ import {
     generateTerrainChunk,
     marchingCubes,
     type TerrainChunk,
-} from '@strata-game-library/core/core/marching-cubes';
-import { getTerrainHeight, type BiomeData as SDFBiomeData, sdTerrain } from '@strata-game-library/core/core/sdf';
+} from '@strata-game-library/core';
+import { getTerrainHeight, type BiomeData as SDFBiomeData, sdTerrain } from '@strata-game-library/core';
 
-export type { MarchingCubesOptions, TerrainChunk } from '@strata-game-library/core/core/marching-cubes';
-export type { BiomeData } from '@strata-game-library/core/core/sdf';
+export type { MarchingCubesOptions, TerrainChunk } from '@strata-game-library/core';
+export type { BiomeData } from '@strata-game-library/core';
 
 export interface TerrainOptions {
     biomes: SDFBiomeData[];

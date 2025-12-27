@@ -7,7 +7,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
-import { createAdvancedWaterMaterial, createWaterMaterial } from '@jbcom/strata/core/water';
+import { createAdvancedWaterMaterial, createWaterMaterial } from '@strata-game-library/core';
 
 interface WaterProps {
     position?: [number, number, number];

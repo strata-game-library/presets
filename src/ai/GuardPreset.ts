@@ -73,22 +73,22 @@ export function createGuardPreset(config: GuardPresetConfig): AIPresetResult {
     }
 
     const stateMachine = new YUKA.StateMachine(vehicle);
-    const patrolState = new PatrolState();
-    const chaseState = new ChaseState();
-    stateMachine.currentState = patrolState;
+    stateMachine.add('PATROL', new PatrolState());
+    stateMachine.add('CHASE', new ChaseState());
+    stateMachine.changeTo('PATROL');
 
     const update = (_delta: number, context?: { playerPosition?: YUKA.Vector3 }) => {
         if (context?.playerPosition) {
             const distance = vehicle.position.distanceTo(context.playerPosition);
 
             if (distance < detectionRadius) {
-                if (stateMachine.currentState !== chaseState) {
-                    stateMachine.changeTo(chaseState);
+                if (!stateMachine.in('CHASE')) {
+                    stateMachine.changeTo('CHASE');
                 }
                 seekBehavior.target = context.playerPosition;
             } else {
-                if (stateMachine.currentState !== patrolState) {
-                    stateMachine.changeTo(patrolState);
+                if (!stateMachine.in('PATROL')) {
+                    stateMachine.changeTo('PATROL');
                 }
             }
         }

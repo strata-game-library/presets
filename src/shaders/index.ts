@@ -12,7 +12,7 @@ import type {
     HologramMaterialOptions,
     ScanlineMaterialOptions,
     ToonMaterialOptions,
-} from '@strata-game-library/core/shaders/materials';
+} from '@strata-game-library/core/shaders';
 
 export interface ToonPreset extends ToonMaterialOptions {
     name: string;

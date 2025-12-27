@@ -1,6 +1,6 @@
-# @strata/presets
+# @strata-game-library/presets
 
-[![npm version](https://img.shields.io/npm/v/@strata/presets.svg)](https://www.npmjs.com/package/@strata/presets)
+[![npm version](https://img.shields.io/npm/v/@strata-game-library/presets.svg)](https://www.npmjs.com/package/@strata-game-library/presets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Pre-configured presets for [Strata 3D](https://strata.game) - ready-to-use terrain, weather, physics, and more.
@@ -24,16 +24,16 @@ Pre-configured presets for [Strata 3D](https://strata.game) - ready-to-use terra
 ## Installation
 
 ```bash
-npm install @strata/presets @jbcom/strata
+npm install @strata-game-library/presets @strata-game-library/core
 # or
-pnpm add @strata/presets @jbcom/strata
+pnpm add @strata-game-library/presets @strata-game-library/core
 ```
 
 ## Usage
 
 ```typescript
-import { createTerrainPreset, TerrainBiomes } from '@strata/presets/terrain';
-import { createWeatherPreset, WeatherPresets } from '@strata/presets/weather';
+import { createTerrainPreset, TerrainBiomes } from '@strata-game-library/presets/terrain';
+import { createWeatherPreset, WeatherPresets } from '@strata-game-library/presets/weather';
 
 // Create terrain with predefined biomes
 const terrain = createTerrainPreset({
