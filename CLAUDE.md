@@ -1,78 +1,132 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-> **See also:** `AGENTS.md` for comprehensive agent instructions.
+Quick reference for Claude Code working with @strata-game-library/presets.
 
 ## Quick Start
 
 ```bash
-# Check current context before starting
-cat memory-bank/activeContext.md 2>/dev/null || echo "No active context"
+# Install and build
+pnpm install
+pnpm run build
 
-# Check for project-specific instructions
-cat .github/copilot-instructions.md 2>/dev/null
+# Check types
+pnpm run typecheck
+
+# Lint
+pnpm run lint
+
+# Test
+pnpm run test
 ```
 
-## Development Workflow
+## What This Package Does
 
-### Before Making Changes
-1. Read the issue/PR description completely
-2. Check `memory-bank/` for project context
-3. Look at recent commits for coding patterns
-4. Run tests to ensure clean starting state
+Provides **parameterized templates** for game assets. Each template defines ALL configurable parameters, with "forms" as suggested starting points.
 
-### Making Changes
-1. Create a feature branch if not already on one
-2. Make minimal, focused changes
-3. Write/update tests for new functionality
-4. Ensure all tests pass
-5. Update documentation if needed
-
-### Committing
-```bash
-# Use conventional commits
-git commit -m "feat(scope): add new feature"
-git commit -m "fix(scope): resolve bug"
-git commit -m "docs: update README"
-git commit -m "test: add missing tests"
-git commit -m "chore: update dependencies"
+```typescript
+// ONE template, MANY variations
+const babyOtter = createQuadruped('otter', { age: 'baby' });
+const oldWolf = createQuadruped('wolf', { age: 'old', wear: 0.5 });
+const ruinedTemple = createBuilding('temple', { wear: 0.7, overgrown: 0.4 });
 ```
 
-## Code Quality Checklist
+## Key Modules
 
-Before considering work complete:
-- [ ] All tests pass
-- [ ] Linting passes
-- [ ] No new warnings introduced
-- [ ] Documentation updated if needed
-- [ ] Commit messages follow conventional format
+| Module | Factory | Forms |
+|--------|---------|-------|
+| `creatures` | `createQuadruped()` | otter, dog, cat, wolf, bear, horse... |
+| `structures` | `createBuilding()` | hut, cabin, temple, tower, barn... |
+| `collectibles` | `createCollectible()` | coin, gem, star, heart, potion... |
+| `obstacles` | `createObstacle()` | rock, spike, pit, fire_pit, ice_patch... |
 
-## Project Structure
+## Design Principles
+
+1. **Generic over specific** - "quadruped" not "otter"
+2. **All knobs exposed** - Never hide a parameter
+3. **Forms are suggestions** - Everything overridable
+4. **Themes are separate** - Colors applied independently
+5. **Tests required** - Every factory needs unit tests
+
+## Adding New Features
+
+### New Form
+
+```typescript
+// In src/creatures/quadruped.ts
+export const FORMS = {
+  // ... existing
+  newAnimal: {
+    earSize: 1.2,
+    tailLength: 0.8,
+    // Only what differs from DEFAULTS
+  },
+};
+```
+
+### New Parameter
+
+1. Add to interface
+2. Add default value
+3. Update any affected forms
+4. Add test coverage
+
+### New Module
+
+1. Create `src/modulename/index.ts`
+2. Define `Params` interface with ALL knobs
+3. Define `DEFAULTS`
+4. Define `FORMS` as partial overrides
+5. Export `create*()` factory
+6. Add to `src/index.ts` exports
+7. Add to `package.json` exports
+8. Add tests
+
+## File Locations
 
 ```
-.
-├── src/                 # Source code
-├── tests/               # Test files
-├── docs/                # Documentation
-├── memory-bank/         # AI context files
-│   ├── activeContext.md # Current focus
-│   └── progress.md      # Session progress
-├── .github/
-│   ├── copilot-instructions.md  # Copilot context
-│   └── workflows/       # CI/CD
-├── CLAUDE.md            # This file
-└── AGENTS.md            # Agent instructions
+src/creatures/quadruped.ts    # 40+ params, 17 forms
+src/creatures/themes.ts       # Color themes
+src/creatures/morphology.ts   # Fine-grained details
+src/structures/building.ts    # 50+ params, 16 forms
+src/collectibles/index.ts     # 30+ params, 17 forms
+src/obstacles/index.ts        # 35+ params, 21 forms
 ```
 
-## Getting Help
+## Integration Points
 
-1. Check `AGENTS.md` for detailed instructions
-2. Check `.github/copilot-instructions.md` for dev commands
-3. Check `docs/` for architecture decisions
-4. Look at test files for usage examples
+- **@strata-game-library/core**: Loads and applies presets
+- **@strata-game-library/model-synth**: Uses `generatePrompt()` for AI models
+- **@strata-game-library/shaders**: Material presets for themes
 
-## Repository-Specific Notes
+## Common Tasks
 
-<!-- Add repository-specific context below -->
+### Check a preset works
+```typescript
+import { createQuadruped, DEFAULTS } from './creatures/quadruped';
+const result = createQuadruped('otter');
+console.log(result); // Should have all DEFAULTS merged with otter form
+```
 
+### Generate AI prompt
+```typescript
+import { generateCreaturePrompt, ALL_THEMES } from './creatures';
+const params = createQuadruped('otter', { age: 'baby' });
+const prompt = generateCreaturePrompt(params, ALL_THEMES.arctic, 'otter');
+// => "baby otter, fluffy fur, #E3F2FD colored, big eyes"
+```
+
+## Dependencies
+
+- `three`: 3D math and geometry
+- `@react-three/fiber`: React integration
+- `@strata-game-library/core`: Core preset system
+- `yuka`: Game AI utilities
+
+## CI/CD
+
+- **CI**: Runs on PRs - lint, typecheck, build, test
+- **CD**: Runs on main - semantic-release to npm
+
+## Memory Bank
+
+Check `memory-bank/activeContext.md` for current session state.

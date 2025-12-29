@@ -1,234 +1,119 @@
-# TypeScript/Node.js Copilot Instructions
+# Copilot Instructions for @strata-game-library/presets
 
-## Environment Setup
+## Repository Purpose
 
-### Package Manager: pnpm (preferred)
+This package provides **parameterized, themable asset templates** for games. Each asset type (creatures, buildings, collectibles, obstacles) has:
+- A template with ALL configurable parameters
+- "Forms" as suggested starting configurations
+- "Themes" for color/material customization
+
+## Key Commands
+
 ```bash
-# Install pnpm if not present
-npm install -g pnpm
-
-# Install dependencies
-pnpm install
-```
-
-### Node Version
-Check `.nvmrc` or `package.json` engines field for required version.
-```bash
-nvm use  # If .nvmrc exists
-```
-
-## Development Commands
-
-### Testing (ALWAYS run tests)
-```bash
-# Run all tests
-pnpm test
-
-# Run tests in watch mode
-pnpm test:watch
-
-# Run with coverage
-pnpm test:coverage
-
-# Run specific test file
-pnpm test -- src/__tests__/specific.test.ts
-
-# Run tests matching pattern
-pnpm test -- -t "pattern"
-```
-
-### Linting & Formatting
-```bash
-# Lint (ESLint or Biome)
-pnpm lint
-
-# Fix lint issues
-pnpm lint:fix
-
-# Format (Prettier or Biome)
-pnpm format
-
-# Check formatting
-pnpm format:check
-
-# Type checking
-pnpm typecheck
-```
-
-### Building
-```bash
-# Build for production
-pnpm build
-
-# Build in watch mode
-pnpm build:watch
-
-# Clean build artifacts
-pnpm clean
+pnpm install          # Install dependencies
+pnpm run build        # Build with tsup
+pnpm run lint         # Lint with Biome
+pnpm run lint:fix     # Auto-fix lint issues
+pnpm run typecheck    # TypeScript check
+pnpm run test         # Run Vitest tests
+pnpm run test:e2e     # Run Playwright e2e tests
 ```
 
 ## Code Patterns
 
-### Imports
+### Creating a New Form
+
 ```typescript
-// Node built-ins first
-import { readFile } from 'node:fs/promises';
-import path from 'node:path';
-
-// External packages
-import { z } from 'zod';
-
-// Internal absolute imports
-import { config } from '@/config';
-import { logger } from '@/utils/logger';
-
-// Relative imports last
-import { helper } from './helper';
+// Forms only specify what differs from DEFAULTS
+export const FORMS: Record<FormName, Partial<Params>> = {
+  newForm: {
+    size: 1.2,      // Only include parameters that differ
+    height: 0.8,
+  },
+};
 ```
 
-### Type Definitions
+### Factory Function Pattern
+
 ```typescript
-// Prefer interfaces for object shapes
-interface UserConfig {
-  readonly id: string;
-  name: string;
-  settings?: Settings;
+export function createAsset(
+  form: FormName,
+  customizations?: Partial<Params>
+): Params {
+  return {
+    ...DEFAULTS,
+    ...FORMS[form],
+    ...customizations,
+  };
 }
-
-// Use type for unions/intersections
-type Result<T> = Success<T> | Failure;
-
-// Export types explicitly
-export type { UserConfig, Result };
 ```
 
-### Error Handling
-```typescript
-// Custom error classes
-class ProcessingError extends Error {
-  constructor(
-    message: string,
-    public readonly code: string,
-    public readonly cause?: Error
-  ) {
-    super(message);
-    this.name = 'ProcessingError';
-  }
-}
+### Theme Application
 
-// Result pattern (alternative to exceptions)
-type Result<T, E = Error> = 
-  | { success: true; data: T }
-  | { success: false; error: E };
+Themes are separate from forms - any theme can apply to any form:
+
+```typescript
+const params = createQuadruped('otter');
+const theme = ALL_THEMES.arctic;
+// Use both together but they're independent
 ```
 
-### Async Patterns
-```typescript
-// Prefer async/await over .then()
-async function fetchData(url: string): Promise<Data> {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new FetchError(`HTTP ${response.status}`);
-  }
-  return response.json();
-}
+## File Structure
 
-// Use Promise.all for parallel operations
-const [users, posts] = await Promise.all([
-  fetchUsers(),
-  fetchPosts(),
-]);
+```
+src/
+├── creatures/          # Animals (quadrupeds)
+│   ├── quadruped.ts    # Template, forms, factory
+│   ├── themes.ts       # Color themes
+│   └── morphology.ts   # Fine-grained parameters
+├── structures/         # Buildings
+│   └── building.ts
+├── collectibles/       # Pickups
+│   └── index.ts
+├── obstacles/          # Hazards
+│   └── index.ts
 ```
 
-### Testing Patterns
+## Testing Patterns
+
 ```typescript
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-
-describe('Processor', () => {
-  let processor: Processor;
-
-  beforeEach(() => {
-    processor = new Processor({ debug: false });
+describe('createQuadruped', () => {
+  it('applies form defaults', () => {
+    const result = createQuadruped('otter');
+    expect(result.earSize).toBe(FORMS.otter.earSize);
   });
 
-  it('should process valid input', async () => {
-    const result = await processor.process('valid');
-    expect(result.success).toBe(true);
+  it('allows customization override', () => {
+    const result = createQuadruped('otter', { earSize: 2.0 });
+    expect(result.earSize).toBe(2.0);
   });
 
-  it('should throw on invalid input', async () => {
-    await expect(processor.process('')).rejects.toThrow('Invalid');
-  });
-
-  it('should call external service', async () => {
-    const mockService = vi.fn().mockResolvedValue({ data: 'test' });
-    // ...
+  it('applies age modifiers', () => {
+    const baby = createQuadruped('otter', { age: 'baby' });
+    expect(baby.size).toBeLessThan(1);
   });
 });
 ```
 
-### React Patterns (if applicable)
-```typescript
-// Functional components with proper typing
-interface ButtonProps {
-  label: string;
-  onClick: () => void;
-  disabled?: boolean;
-}
+## Important Principles
 
-export function Button({ label, onClick, disabled = false }: ButtonProps) {
-  return (
-    <button onClick={onClick} disabled={disabled}>
-      {label}
-    </button>
-  );
-}
+1. **Generic templates** - Use "quadruped" not "otter" as the base
+2. **All knobs exposed** - Never hide a parameter that could be useful
+3. **Forms are optional** - Can use `createCustomQuadruped()` directly
+4. **Themes independent** - Colors separate from shape/form
+5. **Tests required** - Every new form needs test coverage
 
-// Hooks
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-  // ...
-  return debouncedValue;
-}
-```
+## Exports
 
-## Common Issues
+Each module exports:
+- `*Params` interface (all parameters)
+- `DEFAULTS` constant
+- `FORMS` record
+- `create*()` factory function
+- Type unions for form names
 
-### "Cannot find module"
-```bash
-# Rebuild TypeScript
-pnpm build
+## Related Packages
 
-# Check tsconfig.json paths
-```
-
-### Type errors after package update
-```bash
-# Regenerate types
-pnpm install
-pnpm typecheck
-```
-
-### ESM vs CommonJS issues
-```typescript
-// In ESM (type: "module" in package.json)
-import { something } from './module.js';  // .js extension required
-
-// For JSON imports
-import config from './config.json' with { type: 'json' };
-```
-
-## File Structure
-```
-src/
-├── index.ts           # Main entry point
-├── core/              # Core logic (no framework deps)
-├── components/        # React components (if applicable)
-├── hooks/             # React hooks
-├── utils/             # Utility functions
-├── types/             # Type definitions
-└── __tests__/         # Unit tests
-tests/
-├── integration/       # Integration tests
-└── e2e/              # End-to-end tests
-```
+- `@strata-game-library/core` - Uses these presets
+- `@strata-game-library/model-synth` - AI model generation from prompts
+- `@strata-game-library/shaders` - Visual effects for themes
