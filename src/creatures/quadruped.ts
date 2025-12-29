@@ -581,7 +581,7 @@ export function createQuadruped(
       const baseVal = params[k];
       const adjVal = ageAdj[k];
       if (typeof baseVal === 'number' && typeof adjVal === 'number') {
-        (params as any)[k] = baseVal * adjVal;
+        (params as any)[k] = baseVal === 0 ? adjVal : baseVal * adjVal;
       }
     }
   }
@@ -596,7 +596,7 @@ export function createQuadruped(
       const baseVal = params[k];
       const adjVal = buildAdj[k];
       if (typeof baseVal === 'number' && typeof adjVal === 'number') {
-        (params as any)[k] = baseVal * adjVal;
+        (params as any)[k] = baseVal === 0 ? adjVal : baseVal * adjVal;
       }
     }
   }

@@ -12,25 +12,25 @@ import type { QuadrupedParams } from './quadruped';
  */
 export interface EyeMorphology {
   /** Overall size */
-  size: number;
+  size?: number;
   /** Horizontal position on head (0 = center, 1 = side) */
-  position: number;
+  position?: number;
   /** Vertical position (0 = low, 1 = high) */
-  height: number;
+  height?: number;
   /** Distance between eyes */
-  spacing: number;
+  spacing?: number;
   /** Pupil shape (0 = round, 1 = vertical slit, -1 = horizontal slit) */
-  pupilShape: number;
+  pupilShape?: number;
   /** Pupil size relative to iris */
-  pupilSize: number;
+  pupilSize?: number;
   /** Iris color */
-  irisColor: string;
+  irisColor?: string;
   /** Sclera (white) visibility */
-  scleraVisible: number;
+  scleraVisible?: number;
   /** Eyelid droop (0 = alert, 1 = sleepy) */
-  eyelidDroop: number;
+  eyelidDroop?: number;
   /** Brow ridge prominence */
-  browRidge: number;
+  browRidge?: number;
 }
 
 /**
@@ -38,25 +38,25 @@ export interface EyeMorphology {
  */
 export interface EarMorphology {
   /** Overall size */
-  size: number;
+  size?: number;
   /** Length (tip to base) */
-  length: number;
+  length?: number;
   /** Width at base */
-  width: number;
+  width?: number;
   /** Position height on head */
-  position: number;
+  position?: number;
   /** Angle from vertical (0 = up, 90 = horizontal) */
-  angle: number;
+  angle?: number;
   /** Roundness of tip (0 = pointed, 1 = round) */
-  tipRoundness: number;
+  tipRoundness?: number;
   /** Fold/crease presence */
-  fold: number;
+  fold?: number;
   /** Flop/droop */
-  flop: number;
+  flop?: number;
   /** Inner ear visibility */
-  innerVisible: number;
+  innerVisible?: number;
   /** Fur tufts at tips */
-  tufts: number;
+  tufts?: number;
 }
 
 /**
@@ -64,27 +64,27 @@ export interface EarMorphology {
  */
 export interface SnoutMorphology {
   /** Overall length */
-  length: number;
+  length?: number;
   /** Width at base */
-  baseWidth: number;
+  baseWidth?: number;
   /** Width at tip */
-  tipWidth: number;
+  tipWidth?: number;
   /** Height/depth */
-  height: number;
+  height?: number;
   /** Bridge curvature (0 = straight, + = convex, - = concave) */
-  bridgeCurve: number;
+  bridgeCurve?: number;
   /** Nose size */
-  noseSize: number;
+  noseSize?: number;
   /** Nose shape (0 = round, 1 = triangular) */
-  noseShape: number;
+  noseShape?: number;
   /** Nose color */
-  noseColor: string;
+  noseColor?: string;
   /** Nostril visibility */
-  nostrilSize: number;
+  nostrilSize?: number;
   /** Lip thickness */
-  lipThickness: number;
+  lipThickness?: number;
   /** Jowl/cheek fullness */
-  jowlSize: number;
+  jowlSize?: number;
 }
 
 /**
@@ -92,19 +92,19 @@ export interface SnoutMorphology {
  */
 export interface WhiskerMorphology {
   /** Are whiskers present */
-  present: boolean;
+  present?: boolean;
   /** Length */
-  length: number;
+  length?: number;
   /** Thickness */
-  thickness: number;
+  thickness?: number;
   /** Count per side */
-  count: number;
+  count?: number;
   /** Spread angle */
-  spread: number;
+  spread?: number;
   /** Droop (0 = straight, 1 = droopy) */
-  droop: number;
+  droop?: number;
   /** Color */
-  color: string;
+  color?: string;
 }
 
 /**
@@ -112,27 +112,27 @@ export interface WhiskerMorphology {
  */
 export interface PawMorphology {
   /** Overall size */
-  size: number;
+  size?: number;
   /** Width relative to length */
-  width: number;
+  width?: number;
   /** Toe count */
-  toeCount: number;
+  toeCount?: number;
   /** Toe spread */
-  toeSpread: number;
+  toeSpread?: number;
   /** Webbing between toes (0 = none, 1 = full) */
-  webbing: number;
+  webbing?: number;
   /** Pad size */
-  padSize: number;
+  padSize?: number;
   /** Pad color */
-  padColor: string;
+  padColor?: string;
   /** Claw length */
-  clawLength: number;
+  clawLength?: number;
   /** Claw curvature */
-  clawCurve: number;
+  clawCurve?: number;
   /** Claw color */
-  clawColor: string;
+  clawColor?: string;
   /** Fur between toes */
-  toeFur: number;
+  toeFur?: number;
 }
 
 /**
@@ -140,23 +140,23 @@ export interface PawMorphology {
  */
 export interface TailMorphology {
   /** Is tail present */
-  present: boolean;
+  present?: boolean;
   /** Length */
-  length: number;
+  length?: number;
   /** Base thickness */
-  baseThickness: number;
+  baseThickness?: number;
   /** Tip thickness (as ratio of base) */
-  tipThickness: number;
+  tipThickness?: number;
   /** Curvature (0 = straight, + = curves up, - = curves down) */
-  curve: number;
+  curve?: number;
   /** Fluffiness */
-  fluff: number;
+  fluff?: number;
   /** Fur length on tail vs body */
-  furLength: number;
+  furLength?: number;
   /** Has distinct tip (like lion) */
-  hasTuft: boolean;
+  hasTuft?: boolean;
   /** Ringed pattern (like raccoon) */
-  rings: number;
+  rings?: number;
 }
 
 /**
@@ -164,29 +164,29 @@ export interface TailMorphology {
  */
 export interface CoatMorphology {
   /** Base fur length */
-  length: number;
+  length?: number;
   /** Fur density */
-  density: number;
+  density?: number;
   /** Softness (affects how light interacts) */
-  softness: number;
+  softness?: number;
   /** Guard hair length (longer outer hairs) */
-  guardHairLength: number;
+  guardHairLength?: number;
   /** Undercoat density */
-  undercoatDensity: number;
+  undercoatDensity?: number;
   /** Mane presence (0 = none, 1 = full) */
-  mane: number;
+  mane?: number;
   /** Mane length */
-  maneLength: number;
+  maneLength?: number;
   /** Ruff/neck fur */
-  ruff: number;
+  ruff?: number;
   /** Belly fur length (vs body) */
-  bellyFur: number;
+  bellyFur?: number;
   /** Ear tufts */
-  earTufts: number;
+  earTufts?: number;
   /** Cheek fluff */
-  cheekFluff: number;
+  cheekFluff?: number;
   /** Wetness appearance */
-  wetness: number;
+  wetness?: number;
 }
 
 /**

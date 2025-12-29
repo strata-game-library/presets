@@ -135,7 +135,7 @@ export function suggestGameplayStats(params: QuadrupedParams): {
     params.bodyBulk * 0.4 +
     params.clawLength * 0.2 +
     params.pawSize * 0.2 +
-    (params.build === 'muscular' || params.build === 'heavy' ? 0.2 : 0)
+    (params.build === 'stocky' || params.build === 'heavy' ? 0.2 : 0)
   );
 
   return {
