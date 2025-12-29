@@ -54,6 +54,9 @@ jobs:
       - name: Type check
         run: pnpm run typecheck
 
+      - name: Test
+        run: pnpm run test
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:

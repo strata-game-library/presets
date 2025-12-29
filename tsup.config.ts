@@ -8,7 +8,7 @@ import path from 'path';
  * Ensures proper Node.js ESM support with correct .js extensions
  */
 export default defineConfig({
-	entry: globSync('src/**/index.ts').reduce<Record<string, string>>((acc, file) => {
+	entry: globSync(['src/**/index.ts', 'src/structures/building.ts']).reduce<Record<string, string>>((acc, file) => {
 		const key = path.relative('src', file).replace(/\\/g, '/').replace('.ts', '');
 		acc[key] = file;
 		return acc;
