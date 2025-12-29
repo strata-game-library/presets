@@ -145,7 +145,9 @@ export function createPostProcessingPipeline(
     const dispose = () => {
         rtA.dispose();
         rtB.dispose();
-        effectMaterials.forEach((m) => m.dispose());
+		effectMaterials.forEach((m) => {
+			m.dispose();
+		});
         quadGeometry.dispose();
         finalMaterial.dispose();
     };
@@ -180,7 +182,7 @@ function createEffectMaterial(
         case 'filmGrain':
             return createFilmGrainMaterial(effect);
         default:
-            throw new Error(`Unknown effect type: ${(effect as any).type}`);
+            throw new Error(`Unknown effect type: ${(effect as { type: string }).type}`);
     }
 }
 

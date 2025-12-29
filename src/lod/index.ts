@@ -271,7 +271,7 @@ export function detectOptimalPreset(): LODPresetName {
         }
     }
 
-    const memory = (navigator as any).deviceMemory;
+    const memory = (navigator as unknown as { deviceMemory?: number }).deviceMemory;
     if (memory !== undefined) {
         if (memory >= 8) return 'quality';
         if (memory >= 4) return 'desktop';
