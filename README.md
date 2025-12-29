@@ -1,9 +1,12 @@
-# @strata/presets
+# @strata-game-library/presets
 
-[![npm version](https://img.shields.io/npm/v/@strata/presets.svg)](https://www.npmjs.com/package/@strata/presets)
+[![npm version](https://img.shields.io/npm/v/@strata-game-library/presets.svg)](https://www.npmjs.com/package/@strata-game-library/presets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Pre-configured presets for [Strata 3D](https://strata.game) - ready-to-use terrain, weather, physics, and more.
+Pre-configured, parameterized presets for [Strata 3D](https://strata.game) - ready-to-use creatures, structures, collectibles, equipment, and more.
+
+## 🎮 Live Demo
+**Try the interactive Preset Viewer: [strata-game-library.github.io/presets/](https://strata-game-library.github.io/presets/)**
 
 ## 📚 Documentation
 
@@ -24,40 +27,40 @@ Pre-configured presets for [Strata 3D](https://strata.game) - ready-to-use terra
 ## Installation
 
 ```bash
-npm install @strata/presets @jbcom/strata
-# or
-pnpm add @strata/presets @jbcom/strata
+pnpm add @strata-game-library/presets @strata-game-library/core
 ```
 
 ## Usage
 
 ```typescript
-import { createTerrainPreset, TerrainBiomes } from '@strata/presets/terrain';
-import { createWeatherPreset, WeatherPresets } from '@strata/presets/weather';
+import { 
+  createQuadruped, 
+  createBuilding, 
+  createCollectible, 
+  ALL_THEMES 
+} from '@strata-game-library/presets';
 
-// Create terrain with predefined biomes
-const terrain = createTerrainPreset({
-  biomes: [TerrainBiomes.GRASSLAND, TerrainBiomes.MOUNTAIN],
-  resolution: 128,
-});
+// Create a baby otter with arctic theme
+const otter = createQuadruped('otter', { age: 'baby', furLength: 1.4 });
 
-// Apply weather preset
-const weather = createWeatherPreset(WeatherPresets.RAIN);
+// Create a temple building
+const temple = createBuilding('temple', { floors: 2, wear: 0.3 });
+
+// Create a rare gem collectible
+const gem = createCollectible('gem', 'rare', { size: 1.5 });
 ```
 
 ## Available Presets
 
-| Category | Functions |
-|----------|-----------|
-| Terrain | `createTerrainPreset`, `TerrainBiomes` |
-| Weather | `createWeatherPreset`, `WeatherPresets` |
-| Water | `createWaterPreset`, `WaterTypes` |
-| Vegetation | `createVegetationPreset` |
-| Clouds | `createCloudPreset` |
-| Camera | `createCameraPreset` |
-| Animation | `createAnimationPreset` |
-| Physics | `createPhysicsPreset` |
-| Audio | `createAudioPreset` |
+| Category | Module | Examples |
+|----------|--------|----------|
+| Creatures | `@strata-game-library/presets/creatures` | `createQuadruped`, `createMount` |
+| Structures | `@strata-game-library/presets/structures` | `createBuilding` |
+| Collectibles | `@strata-game-library/presets/collectibles` | `createCollectible` |
+| Obstacles | `@strata-game-library/presets/obstacles` | `createObstacle` |
+| Equipment | `@strata-game-library/presets/equipment` | `createEquipment` |
+| Vehicles | `@strata-game-library/presets/vehicles` | `createVehicle` |
+| AI | `@strata-game-library/presets/ai` | `GuardPreset`, `FlockPreset` |
 
 ## Related
 
