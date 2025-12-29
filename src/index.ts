@@ -4,6 +4,7 @@
  * @module presets
  */
 
+// Core systems
 export * from './ai';
 export * from './animation';
 export * from './audio';
@@ -29,3 +30,8 @@ export * from './ui';
 export * from './vegetation';
 export * from './water';
 export * from './weather';
+
+// Game-specific presets (migrated from arcade-cabinet games)
+export * from './factions';
+export * from './npcs';
+export * from './structures';
