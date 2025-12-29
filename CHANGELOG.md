@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/strata-game-library/presets/compare/v1.1.0...v1.1.1) (2025-12-29)
+
+
+### Bug Fixes
+
+* CI/CD robustness and lockfile update ([#27](https://github.com/strata-game-library/presets/issues/27)) ([4d55dc8](https://github.com/strata-game-library/presets/commit/4d55dc8605d0e6f3b816c0a332cb0a68a978e003))
+
 # [1.1.0](https://github.com/strata-game-library/presets/compare/v1.0.0...v1.1.0) (2025-12-29)
 
 
