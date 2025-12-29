@@ -49,3 +49,6 @@ export * from './obstacles';
 
 // Equipment (weapons, armor, backpacks, etc.)
 export * from './equipment';
+
+// Vehicles (boats, carts, etc.)
+export * from './vehicles';

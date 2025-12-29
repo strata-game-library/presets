@@ -24,6 +24,7 @@
 export * from './quadruped';
 export * from './themes';
 export * from './morphology';
+export * from './mount';
 
 import type { QuadrupedParams } from './quadruped';
 import type { CreatureTheme } from './themes';

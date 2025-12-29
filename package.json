@@ -1,6 +1,6 @@
 {
   "name": "@strata-game-library/presets",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Pre-configured presets for Strata 3D - ready-to-use terrain, weather, physics settings",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -130,6 +130,10 @@
     "./equipment": {
       "types": "./dist/equipment/index.d.ts",
       "import": "./dist/equipment/index.js"
+    },
+    "./vehicles": {
+      "types": "./dist/vehicles/index.d.ts",
+      "import": "./dist/vehicles/index.js"
     }
   },
   "files": [
@@ -181,7 +185,7 @@
     "@react-three/fiber": "^9.4.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@strata-game-library/core": "^1.4.10",
+    "@strata-game-library/core": "^1.4.12",
     "@types/react": "^19.0.0",
     "@types/three": "^0.182.0",
     "@vitejs/plugin-react": "^5.1.2",
@@ -191,10 +195,10 @@
     "react-dom": "^19.2.3",
     "semantic-release": "^25.0.2",
     "three": "^0.182.0",
-    "tsup": "^8.5.0",
-    "typescript": "^5.9.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
     "vite": "^7.3.0",
-    "vitest": "^3.1.0",
+    "vitest": "^3.2.4",
     "yuka": "^0.7.8"
   },
   "peerDependencies": {

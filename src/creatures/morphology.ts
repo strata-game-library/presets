@@ -359,20 +359,20 @@ export function createMorphology(
   species?: keyof typeof SPECIES_MORPHOLOGY,
   overrides?: Partial<DetailedMorphology>
 ): DetailedMorphology {
-  let morph = JSON.parse(JSON.stringify(MORPHOLOGY_DEFAULTS)) as DetailedMorphology;
+  const morph = JSON.parse(JSON.stringify(MORPHOLOGY_DEFAULTS)) as DetailedMorphology;
 
   if (species && SPECIES_MORPHOLOGY[species]) {
     const speciesOverrides = SPECIES_MORPHOLOGY[species];
     for (const key in speciesOverrides) {
       const k = key as keyof DetailedMorphology;
-      morph[k] = { ...morph[k], ...speciesOverrides[k] } as any;
+      (morph as any)[k] = { ...morph[k], ...speciesOverrides[k] };
     }
   }
 
   if (overrides) {
     for (const key in overrides) {
       const k = key as keyof DetailedMorphology;
-      morph[k] = { ...morph[k], ...overrides[k] } as any;
+      (morph as any)[k] = { ...morph[k], ...overrides[k] };
     }
   }
 
