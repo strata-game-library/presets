@@ -46,3 +46,6 @@ export * from './collectibles';
 
 // Obstacles (rocks, spikes, etc.)
 export * from './obstacles';
+
+// Vehicles (boats, carts, etc.)
+export * from './vehicles';

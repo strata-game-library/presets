@@ -4,7 +4,6 @@
  * @module presets/water
  */
 
-import * as THREE from 'three';
 import {
     createAdvancedWaterMaterial,
     createWaterMaterial,
