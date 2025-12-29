@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/strata-game-library/presets/compare/v1.0.0...v1.1.0) (2025-12-29)
+
+
+### Features
+
+* comprehensive preset system with parameterized templates ([#14](https://github.com/strata-game-library/presets/issues/14)) ([cd30b84](https://github.com/strata-game-library/presets/commit/cd30b841c4efbddd587c94fefbfd8165cdf195ca)), closes [#12](https://github.com/strata-game-library/presets/issues/12)
+
 # 1.0.0 (2025-12-29)
 
 
