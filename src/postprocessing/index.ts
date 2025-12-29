@@ -145,7 +145,9 @@ export function createPostProcessingPipeline(
     const dispose = () => {
         rtA.dispose();
         rtB.dispose();
-        effectMaterials.forEach((m) => m.dispose());
+		effectMaterials.forEach((m) => {
+			m.dispose();
+		});
         quadGeometry.dispose();
         finalMaterial.dispose();
     };
@@ -180,7 +182,7 @@ function createEffectMaterial(
         case 'filmGrain':
             return createFilmGrainMaterial(effect);
         default:
-            throw new Error(`Unknown effect type: ${(effect as any).type}`);
+            throw new Error(`Unknown effect type: ${(effect as { type: string }).type}`);
     }
 }
 
@@ -630,36 +632,36 @@ const filmGrainFragmentShader = /* glsl */ `
  * Re-export types from core postProcessing module
  */
 export type {
-    BloomSettings,
-    BrightnessContrastSettings,
-    ChromaticAberrationSettings,
-    ColorGradingSettings,
-    DOFSettings,
-    FilmGrainSettings,
-    LUTConfig,
-    NoiseSettings,
-    PostProcessingMood,
-    PostProcessingPreset,
-    SepiaSettings,
-    SSAOSettings,
-    ToneMappingSettings,
-    VignetteSettings,
-} from '@strata-game-library/core/core/postProcessing';
+	BloomSettings,
+	BrightnessContrastSettings,
+	ChromaticAberrationSettings,
+	ColorGradingSettings,
+	DOFSettings,
+	FilmGrainSettings,
+	LUTConfig,
+	NoiseSettings,
+	PostProcessingMood,
+	PostProcessingPreset,
+	SepiaSettings,
+	SSAOSettings,
+	ToneMappingSettings,
+	VignetteSettings,
+} from '@strata-game-library/core';
 
 export {
-    apertureToBokehScale,
-    blendPostProcessingPresets,
-    calculateFocusDistance,
-    calculateFocusDistanceToMesh,
-    defaultEffectSettings,
-    dofScenarios,
-    focalLengthToFOV,
-    fovToFocalLength,
-    getTimeOfDayEffects,
-    lutConfigs,
-} from '@strata-game-library/core/core/postProcessing';
+	apertureToBokehScale,
+	blendPostProcessingPresets,
+	calculateFocusDistance,
+	calculateFocusDistanceToMesh,
+	defaultEffectSettings,
+	dofScenarios,
+	focalLengthToFOV,
+	fovToFocalLength,
+	getTimeOfDayEffects,
+	lutConfigs,
+} from '@strata-game-library/core';
 
-import type { PostProcessingPreset } from '@strata-game-library/core/core/postProcessing';
+import type { PostProcessingPreset } from '@strata-game-library/core';
 
 /**
  * Cinematic post-processing preset

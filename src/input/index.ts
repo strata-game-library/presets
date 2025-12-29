@@ -13,7 +13,7 @@ import type {
     TriggerConfig,
     TriggerMaterialConfig,
     WallButtonProps,
-} from '@strata-game-library/core/components/input';
+} from '@strata-game-library/core/components';
 
 export interface InputPreset<T> {
     name: string;
@@ -413,7 +413,10 @@ export function createCustomTriggerPreset(
     materialConfig?: TriggerMaterialConfig,
     behaviorConfig?: Partial<TriggerBehaviorConfig>
 ): TriggerPreset {
-    const baseBehavior = VEHICLE_THROTTLE_PRESET.props.behaviorConfig!;
+    const baseBehavior = VEHICLE_THROTTLE_PRESET.props.behaviorConfig;
+    if (!baseBehavior) {
+        throw new Error('VEHICLE_THROTTLE_PRESET.props.behaviorConfig is undefined');
+    }
     return {
         type: 'trigger',
         name,

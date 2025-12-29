@@ -148,7 +148,9 @@ export function createAnimatedBillboard(
     frameRate: number = 10,
     options: Omit<BillboardOptions, 'texture'> = {}
 ): THREE.Mesh & { update: (deltaTime: number) => void } {
-    const mesh = createBillboard({ ...options, texture }) as any;
+    const mesh = createBillboard({ ...options, texture }) as THREE.Mesh & {
+        update: (deltaTime: number) => void;
+    };
 
     let currentFrame = 0;
     let frameTime = 0;

@@ -6,6 +6,8 @@ declare module 'yuka' {
     maxForce: number;
     mass: number;
     steering: SteeringManager;
+    neighborhoodRadius: number;
+    updateNeighborhood: boolean;
     update(delta: number): this;
   }
 
@@ -13,7 +15,10 @@ declare module 'yuka' {
     add(behavior: SteeringBehavior): this;
   }
 
-  export class SteeringBehavior {}
+  export class SteeringBehavior {
+    active: boolean;
+    weight: number;
+  }
 
   export class SeekBehavior extends SteeringBehavior {
     constructor(target?: Vector3);
@@ -21,14 +26,16 @@ declare module 'yuka' {
   }
 
   export class FleeBehavior extends SteeringBehavior {
-    constructor(target?: Vector3);
+    constructor(target?: Vector3, panicDistance?: number);
     target: Vector3;
+    panicDistance: number;
   }
 
   export class ArriveBehavior extends SteeringBehavior {
-    constructor(target?: Vector3, deceleration?: number);
+    constructor(target?: Vector3, deceleration?: number, tolerance?: number);
     target: Vector3;
     deceleration: number;
+    tolerance: number;
   }
 
   export class WanderBehavior extends SteeringBehavior {
@@ -80,6 +87,8 @@ declare module 'yuka' {
     constructor(x?: number, y?: number, z?: number);
     set(x: number, y: number, z: number): this;
     copy(v: Vector3): this;
+    clone(): Vector3;
+    applyRotation(q: Quaternion): this;
     add(v: Vector3): this;
     sub(v: Vector3): this;
     multiplyScalar(s: number): this;
@@ -109,5 +118,22 @@ declare module 'yuka' {
     y: number;
     z: number;
     w: number;
+  }
+
+  export class StateMachine<T> {
+    constructor(owner?: T);
+    owner: T;
+    currentState: State<T>;
+    previousState: State<T>;
+    globalState: State<T>;
+    add(id: string, state: State<T>): this;
+    changeTo(state: State<T>): this;
+    update(): this;
+  }
+
+  export class State<T> {
+    enter(owner: T): void;
+    execute(owner: T): void;
+    exit(owner: T): void;
   }
 }

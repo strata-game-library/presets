@@ -13,7 +13,7 @@ import {
     createFootprintTexture,
     createScorchMarkTexture,
     createWaterPuddleTexture,
-} from '@strata-game-library/core/core/decals';
+} from '@strata-game-library/core';
 
 export interface DecalOptions {
     position: THREE.Vector3;
@@ -185,7 +185,10 @@ export function createBulletHoleDecal(
         const canvas = document.createElement('canvas');
         canvas.width = 64;
         canvas.height = 64;
-        const ctx = canvas.getContext('2d')!;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+            throw new Error('createBulletHoleDecal: Could not get 2D context from canvas');
+        }
 
         // Draw bullet hole
         const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);

@@ -4,15 +4,15 @@
  */
 
 import type {
-    CrystalMaterialOptions,
-    DissolveMaterialOptions,
-    ForcefieldMaterialOptions,
-    GlitchMaterialOptions,
-    GradientMaterialOptions,
-    HologramMaterialOptions,
-    ScanlineMaterialOptions,
-    ToonMaterialOptions,
-} from '@strata-game-library/core/shaders/materials';
+	CrystalMaterialOptions,
+	DissolveMaterialOptions,
+	ForcefieldMaterialOptions,
+	GlitchMaterialOptions,
+	GradientMaterialOptions,
+	HologramMaterialOptions,
+	ScanlineMaterialOptions,
+	ToonMaterialOptions,
+} from '@strata-game-library/core/shaders';
 
 export interface ToonPreset extends ToonMaterialOptions {
     name: string;
