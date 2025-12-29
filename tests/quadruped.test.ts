@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 import {
   createQuadruped,
   createCustomQuadruped,
-  DEFAULTS,
-  FORMS,
+  QUADRUPED_DEFAULTS,
+  QUADRUPED_FORMS,
   type FormName,
 } from '../src/creatures/quadruped';
 
@@ -21,17 +21,17 @@ describe('createQuadruped', () => {
       expect(result).toHaveProperty('build');
     });
 
-    it('uses DEFAULTS as base', () => {
+    it('uses QUADRUPED_DEFAULTS as base', () => {
       const result = createCustomQuadruped({});
       
-      expect(result.size).toBe(DEFAULTS.size);
-      expect(result.bodyLength).toBe(DEFAULTS.bodyLength);
-      expect(result.age).toBe(DEFAULTS.age);
+      expect(result.size).toBe(QUADRUPED_DEFAULTS.size);
+      expect(result.bodyLength).toBe(QUADRUPED_DEFAULTS.bodyLength);
+      expect(result.age).toBe(QUADRUPED_DEFAULTS.age);
     });
   });
 
   describe('forms', () => {
-    const formNames = Object.keys(FORMS) as FormName[];
+    const formNames = Object.keys(QUADRUPED_FORMS) as FormName[];
 
     it.each(formNames)('form "%s" produces valid output', (form) => {
       const result = createQuadruped(form);
@@ -168,8 +168,8 @@ describe('createCustomQuadruped', () => {
   it('creates from scratch with defaults', () => {
     const result = createCustomQuadruped({});
     
-    expect(result.size).toBe(DEFAULTS.size);
-    expect(result.age).toBe(DEFAULTS.age);
+    expect(result.size).toBe(QUADRUPED_DEFAULTS.size);
+    expect(result.age).toBe(QUADRUPED_DEFAULTS.age);
   });
 
   it('allows full customization', () => {

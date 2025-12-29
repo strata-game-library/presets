@@ -8,6 +8,8 @@
 import * as THREE from 'three';
 import { furFragmentShader, furVertexShader } from './shaders';
 
+export const FUR_GROUP_USER_DATA_KEY = 'isFurGroup';
+
 export interface FurOptions {
     baseColor?: THREE.ColorRepresentation;
     tipColor?: THREE.ColorRepresentation;
@@ -82,6 +84,7 @@ export function createFurSystem(
     }
 
     const group = new THREE.Group();
+    group.userData[FUR_GROUP_USER_DATA_KEY] = true;
 
     // Base mesh
     const baseMesh = new THREE.Mesh(geometry, baseMaterial);

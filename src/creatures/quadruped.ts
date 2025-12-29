@@ -121,7 +121,7 @@ export interface QuadrupedParams {
 // DEFAULT VALUES
 // ============================================
 
-export const DEFAULTS: QuadrupedParams = {
+export const QUADRUPED_DEFAULTS: QuadrupedParams = {
   size: 1,
   bodyLength: 1,
   bodyWidth: 1,
@@ -197,7 +197,7 @@ export type FormName =
  * Each form is just suggested parameter values.
  * Only specifies what differs from defaults.
  */
-export const FORMS: Record<FormName, Partial<QuadrupedParams>> = {
+export const QUADRUPED_FORMS: Record<FormName, Partial<QuadrupedParams>> = {
   // --- MUSTELIDS ---
   otter: {
     bodyLength: 1.3,
@@ -566,10 +566,10 @@ export function createQuadruped(
   customizations?: Partial<QuadrupedParams>
 ): QuadrupedParams {
   // Start with defaults
-  let params = { ...DEFAULTS };
+  let params = { ...QUADRUPED_DEFAULTS };
 
   // Apply form
-  const formParams = FORMS[form];
+  const formParams = QUADRUPED_FORMS[form];
   params = { ...params, ...formParams };
 
   // Apply age adjustments (from customization or form)
@@ -581,7 +581,7 @@ export function createQuadruped(
       const baseVal = params[k];
       const adjVal = ageAdj[k];
       if (typeof baseVal === 'number' && typeof adjVal === 'number') {
-        (params as any)[k] = baseVal === 0 ? adjVal : baseVal * adjVal;
+        (params as Record<string, any>)[k] = baseVal === 0 ? adjVal : baseVal * adjVal;
       }
     }
   }
@@ -596,7 +596,7 @@ export function createQuadruped(
       const baseVal = params[k];
       const adjVal = buildAdj[k];
       if (typeof baseVal === 'number' && typeof adjVal === 'number') {
-        (params as any)[k] = baseVal === 0 ? adjVal : baseVal * adjVal;
+        (params as Record<string, any>)[k] = baseVal === 0 ? adjVal : baseVal * adjVal;
       }
     }
   }
@@ -616,5 +616,5 @@ export function createQuadruped(
 export function createCustomQuadruped(
   params: Partial<QuadrupedParams>
 ): QuadrupedParams {
-  return { ...DEFAULTS, ...params };
+  return { ...QUADRUPED_DEFAULTS, ...params };
 }

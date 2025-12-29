@@ -23,6 +23,8 @@
   - structures/building.ts: 50+ parameters, 16 forms
   - collectibles/index.ts: 30+ parameters, 17 forms
   - obstacles/index.ts: 35+ parameters, 21 forms
+  - vehicles/index.ts: 25+ parameters, 8 forms
+  - creatures/mount.ts: Extends quadruped with 7 mount-specific params
   - creatures/themes.ts: Natural + Fantasy themes
   - creatures/morphology.ts: Fine-grained creature details
 - [x] Rebased feature branch onto main (after #12 merge)
@@ -34,6 +36,8 @@
 - [x] Updated CI workflow to run tests
 - [x] Updated package.json with new exports and dependencies
 - [x] Created GitHub issues for future work (#15-#21)
+- [x] Added vehicle and mount presets (issue #16)
+- [x] Resolved export ambiguities and fixed pre-existing type errors in fur module
 
 ### For Next Agent
 - [ ] PR #12 is now merged.
