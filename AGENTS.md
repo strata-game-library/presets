@@ -1,188 +1,36 @@
-# AGENTS.md
+# 🤖 Strata Agentic Instructions
 
-Comprehensive instructions for AI agents working with this repository.
+This document provides a unified set of instructions for AI agents (Cursor, Jules, Claude) working within the Strata ecosystem.
 
-## Repository Overview
+## 🌌 Core Philosophy
+Strata is a high-performance 3D game framework for React. Efficiency, modularity, and object reuse are paramount.
 
-`@strata-game-library/presets` provides **parameterized, themable asset templates** for games built with Strata.
+## 🛠️ Development Standards
 
-### Core Philosophy
+### 1. No React in Core
+All logic in `src/core/` must be pure TypeScript. No React imports, no hooks. This ensures core algorithms are portable and testable.
 
-```
-Template × Variants × Themes = Unlimited Assets
-```
+### 2. Performance & 3D
+- **Object Reuse**: Never create geometries or materials in a render loop. Use `useMemo`.
+- **Framerate**: Keep `useFrame` logic minimal.
+- **Math**: Use the centralized math utilities in `src/core/math/`.
 
-- **Templates** define all available knobs (40+ parameters per asset type)
-- **Forms** are suggested starting configurations (otter, temple, gem, etc.)
-- **Themes** apply colors independently of form
-- Everything is customizable - forms are just starting points
+### 3. Documentation (TypeDoc)
+- Every public function/class must have a TSDoc comment.
+- Docs are automatically synced to the central [strata-game-library.github.io](https://strata-game-library.github.io) site.
 
-## Agent Types
+### 4. Git & Commits
+- Use Conventional Commits.
+- One PR per feature.
+- Always include a summary of changes for the next agent session.
 
-| Agent | Best For | Context File |
-|-------|----------|--------------|
-| **Claude** | Complex reasoning, architecture, cross-repo work | `CLAUDE.md` |
-| **Copilot** | Issue kickoffs, targeted fixes, code generation | `.github/copilot-instructions.md` |
-| **Cursor** | IDE-integrated development | `.cursor/rules/*.mdc` |
+## 🤖 Interaction Commands
 
-## Development Commands
+| Command | Action |
+|---------|--------|
+| `/cursor review` | Trigger a Cursor AI review of the current PR |
+| `/jules [prompt]` | Start a Jules session for high-level tasks |
+| `@claude [prompt]` | Interactive help on PRs and Issues |
 
-```bash
-# Install dependencies
-pnpm install
-
-# Build (uses tsup for ESM)
-pnpm run build
-
-# Lint with Biome
-pnpm run lint
-pnpm run lint:fix
-
-# Type check
-pnpm run typecheck
-
-# Run tests
-pnpm run test
-
-# Run e2e tests
-pnpm run test:e2e
-```
-
-## Module Structure
-
-```
-src/
-├── creatures/          # Quadruped templates (otter, dog, horse, etc.)
-│   ├── quadruped.ts    # Main template with 40+ parameters
-│   ├── themes.ts       # Color themes (natural, fantasy)
-│   ├── morphology.ts   # Detailed fine-grained parameters
-│   └── index.ts
-├── structures/         # Building templates
-│   └── building.ts     # 50+ parameters, 16 forms
-├── collectibles/       # Pickup items
-│   └── index.ts        # 30+ parameters, 17 forms
-├── obstacles/          # Hazards and blockers
-│   └── index.ts        # 35+ parameters, 21 forms
-└── [existing modules]  # ai, animation, audio, etc.
-```
-
-## Adding New Presets
-
-### 1. Define ALL Parameters
-
-Ask: "What are ALL the knobs someone might want to adjust?"
-
-```typescript
-export interface NewAssetParams {
-  // Group parameters logically
-  size: number;
-  // ... every possible adjustment
-}
-
-export const DEFAULTS: NewAssetParams = {
-  size: 1,
-  // ... sensible defaults
-};
-```
-
-### 2. Create Forms (Starting Points)
-
-Forms are just partial parameter overrides:
-
-```typescript
-export const FORMS: Record<FormName, Partial<NewAssetParams>> = {
-  variantA: { size: 1.2, /* only what differs */ },
-  variantB: { size: 0.8 },
-};
-```
-
-### 3. Add Factory Function
-
-```typescript
-export function createNewAsset(
-  form: FormName,
-  customizations?: Partial<NewAssetParams>
-): NewAssetParams {
-  return {
-    ...DEFAULTS,
-    ...FORMS[form],
-    ...customizations,
-  };
-}
-```
-
-### 4. Add Tests
-
-```typescript
-// tests/new-asset.test.ts
-describe('createNewAsset', () => {
-  it('applies form defaults', () => {
-    const asset = createNewAsset('variantA');
-    expect(asset.size).toBe(1.2);
-  });
-
-  it('allows customization', () => {
-    const asset = createNewAsset('variantA', { size: 2.0 });
-    expect(asset.size).toBe(2.0);
-  });
-});
-```
-
-## Integration with @strata-game-library/core
-
-Presets are designed to work with core's preset loading system:
-
-```typescript
-import { usePreset } from '@strata-game-library/core';
-import { createQuadruped, ALL_THEMES } from '@strata-game-library/presets';
-
-function OtterCharacter() {
-  const params = createQuadruped('otter', { age: 'baby' });
-  const theme = ALL_THEMES.arctic;
-  
-  // Use params to configure model
-  return <ProceduralCreature params={params} theme={theme} />;
-}
-```
-
-## Testing Requirements
-
-### Unit Tests (Vitest)
-- Every factory function must have tests
-- Test all forms produce valid output
-- Test customization overrides work
-- Test modifier combinations (age × build × condition)
-
-### E2E Tests (Playwright)
-- Load each preset type with @strata-game-library/core
-- Snapshot render output
-- Verify theme application
-- Test prompt generation produces valid strings
-
-## Commit Message Format
-
-Use [Conventional Commits](https://www.conventionalcommits.org/):
-
-```bash
-feat(creatures): add dragon form to quadruped template
-fix(collectibles): correct gem facet count default
-test(obstacles): add coverage for moving obstacles
-docs(readme): update usage examples
-```
-
-## Related Repositories
-
-| Repo | Purpose |
-|------|---------|
-| `strata-game-library/core` | Core rendering, preset loading |
-| `strata-game-library/shaders` | GLSL shader presets |
-| `strata-game-library/audio-synth` | Procedural audio |
-| `strata-game-library/model-synth` | 3D model generation (Meshy) |
-
-## What NOT To Do
-
-- ❌ Don't create game-specific presets (no "RustyTheOtter")
-- ❌ Don't hardcode colors in forms (use themes)
-- ❌ Don't skip parameter documentation
-- ❌ Don't add presets without corresponding tests
-- ❌ Don't merge without CI passing
+## 🧠 Memory Bank
+Always update `memory-bank/activeContext.md` at the end of your session to ensure a smooth handoff to the next agent.
