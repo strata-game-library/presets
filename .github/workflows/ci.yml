@@ -81,7 +81,7 @@ jobs:
           path: dist
 
       - name: Run tests with coverage
-        run: pnpm run test:coverage -- --reporter=default --reporter=vitest-agentic-control
+        run: pnpm run test:coverage
 
       - name: Report Coveralls
         uses: coverallsapp/github-action@5cbfd81b66ca5d10c19b062c04de0199c215fb6e # v2.3.7
@@ -122,7 +122,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run E2E tests
-        run: pnpm run test:e2e -- --project=chromium --reporter=agentic-triage/reporters/playwright
+        run: pnpm run test:e2e -- --project=chromium
 
       - name: Upload E2E results
         uses: actions/upload-artifact@v6 # v4.6.0
